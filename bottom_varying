@@ -1,0 +1,95 @@
+//bottom varying method
+#include <iostream>
+#define max 5
+using namespace std;        
+class stack {
+private:
+    int bos;
+    int arr[5];
+public:
+     stack(){
+        bos=0;
+     }
+    void push(int x){
+        if (isfull())
+        {
+            cout<<"stack overflow"<<endl;
+        }
+        else
+            {
+            bos++;
+            for (int i=bos;i>0;i--)
+            {
+                arr[i]=arr[i-1];
+                //cout<<"shifting element: "<<arr[i]<<endl;
+            }
+            arr[0]=x;
+            cout<<"pushed element is: "<<x<<endl;
+            }
+    }
+    
+    void pop()
+    {
+       if(isempty())
+       {
+        cout<<"stack underflow"<<endl;
+       }
+       else
+       {
+        int x=arr[0];
+        bos--;
+        for (int i=0;i<bos;i++)
+        {
+            arr[i]=arr[i+1];
+        }
+        cout<<"popped element is: "<<x<<endl;
+       }
+       
+    }
+
+
+
+    bool isfull(){
+        if(bos==max)
+    {
+        return true;
+
+    }
+    else{
+        return false;
+    }
+    }
+    bool isempty()
+    {
+        if(bos==0)
+        {
+           return true;
+        }
+        else
+            return false;
+    }
+   void  peek()
+   {
+         if(isempty())
+         {
+          cout<<"nothing to show."<<endl;
+         }
+         else
+         {
+          cout<<"the top element is now->"<<arr[0]<<endl;
+         }
+     }
+   
+
+};
+int main() {
+    stack s;
+    s.push(10);
+    s.push(20);
+    cout<<endl;
+    s.pop();
+    s.pop();
+    s.peek();
+    s.pop(); // This should trigger stack underflow
+    return 0;
+}   
