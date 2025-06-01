@@ -1,0 +1,131 @@
+//queue
+//(i).front and rear(back) varying method
+#include <iostream>
+#include<conio.h>
+using namespace std;
+class queue{
+private:
+       int *arr;
+       int front;
+       int rear;
+       int n;
+public:
+      queue()
+      {
+         n=5;
+         front=-1;
+         rear=-1;
+         arr=new int[n];
+      }       
+   ~queue(){
+    delete[] arr;
+   }
+    void enqueue(int x)
+    {
+      if(isfull())
+      {
+        cout<<"---the queue is full---"<<endl;
+      }
+      else{
+        rear++;
+        arr[rear]=x;
+      }
+      if(front==-1)
+         front++;
+    }
+void dequeue()
+{
+if(isempty())
+{
+    cout<<"the queue is empty"<<endl;
+}
+else{
+    cout<<"the popped element is:"<<arr[front]<<endl;
+    front++;
+}
+}
+void display()
+{
+    if (isempty())
+    {
+        cout << "Queue is empty" << endl;
+    }
+    else
+    {
+        cout << "Queue elements: ";
+        for (int i = front; i <= rear; i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+}
+
+
+bool isfull()
+{
+    if(rear==n-1)
+    {
+        return true;
+    }
+    else{
+        return false;
+    }
+}    
+bool isempty()
+{
+    if(front==-1||front>rear)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+};
+int main ()
+{
+    queue Q;
+    int choice;
+    int x;
+    do{
+    cout<<"==enter your choice=="<<endl;
+    cout<<"==Here are yur options=="<<endl;
+    cout<<"1.enqueue"<<endl;
+    cout<<"2.dequeue"<<endl;
+    cout<<"3.display"<<endl;
+    cout<<"4.exit"<<endl;
+    cout<<"Enter here->"<<endl;
+        cin>>choice;
+    switch(choice)
+    {
+        case 1:
+        cout<<"enter the queuing element->"<<endl;
+        cin>>x;
+        Q.enqueue(x);
+        break;
+
+        case 2:
+        Q.dequeue();
+        break;
+
+        case 3:
+        Q.display();
+        break;
+
+        case 4:
+        cout<<"existing....."<<endl;
+        break;
+
+        default:
+        cout<<"invalid option"<<endl;
+        break;
+
+    }
+}
+while(choice!=4);
+    getch();
+    return 0;
+}
