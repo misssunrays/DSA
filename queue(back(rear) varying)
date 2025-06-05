@@ -1,0 +1,123 @@
+// queue
+// (ii)front fixed bottom varying
+#include<iostream>
+#include<conio.h>
+using namespace std;
+class queue{
+    int *arr;
+    int front;
+    int back;
+    int n;
+public:
+     queue(int size){
+        n=size;
+        front=-1;
+        back=-1;
+        arr=new int[n];
+     }
+     ~queue()
+     {
+        delete [] arr;
+     }
+void enqueue(int x)
+{
+  if(back==n-1)
+  {
+   cout<<"the queue is full"<<endl;
+
+  }
+  else{
+  back++;
+  arr[back]=x;
+  cout<<"the element enqueued is:"<<x<<endl;
+
+
+  }
+  if(front==-1)
+  {
+    front++;
+  }
+
+
+}
+void dequeue()
+{
+    int element;
+    element=arr[front]; 
+    
+    if(front==back)
+    {
+        cout<<"the queue is empty"<<endl;
+    }
+    for(int i=0;i<back;i++)
+    {
+     arr[i]=arr[i+1];
+
+    }
+   cout<<"the dequeued element is:"<<element<<endl;
+    back--;
+}
+void display()
+{
+     if(front==-1||front<back)
+     {
+        cout<<"No element detected.(enqueue)"<<endl;
+     }
+    else
+    {
+     cout<<"the current element is:"<<arr[front]<<endl;
+    }
+}
+
+};
+
+int main()
+{
+    int x;
+    int size;
+    int choice;
+    cout<<"enter the array size:";
+    cin>>size;
+    queue Q(size);
+    
+ do{
+    cout<<"==enter your choice=="<<endl;
+    cout<<"==Here are yur options=="<<endl;
+    cout<<"1.enqueue"<<endl;
+    cout<<"2.dequeue"<<endl;
+    cout<<"3.display"<<endl;
+    cout<<"4.exit"<<endl;
+    cout<<"Enter here->"<<endl;
+        cin>>choice;
+    switch(choice)
+    {
+        case 1:
+        cout<<"enter the queuing element->"<<endl;
+        cin>>x;
+        Q.enqueue(x);
+        break;
+
+        case 2:
+        Q.dequeue();
+        break;
+
+        case 3:
+        Q.display();
+        break;
+
+        case 4:
+        cout<<"existing....."<<endl;
+        break;
+
+        default:
+        cout<<"invalid option"<<endl;
+        break;
+
+    }
+}
+while(choice!=4);
+    getch();
+    return 0;
+
+
+}
