@@ -1,0 +1,114 @@
+//circular queue
+#include<iostream>
+#include <conio.h>
+#define max 6//although we can allocate dynamically as well.
+using namespace std;
+class circularq
+{
+private:
+      int front;
+      int rear;
+      int  arr[max];
+      int cursize;//for tracking no of elements on the queue.
+public:
+      circularq()
+      {
+       front=0;
+       rear=-1;
+       cursize=0;
+      }
+
+void enqueue()
+{
+if(cursize==max)
+{
+    cout<<"the queue is full"<<endl;
+}
+else
+{
+    int element;
+cout<<"enter the queuing elemet:";
+cin>>element;
+rear=(rear+1)%max;
+arr[rear]=element;
+cursize++;
+display();
+}
+}
+void dequeue()
+{
+ if(cursize==0)
+ {
+    cout<<"the queue is empty"<<endl;
+ }
+ else
+ {
+ cout<<"the dequed element is:"<<arr[front]<<endl;
+ front=(front+1)%max;
+    cursize--;//we dequeue means element are decreased making empty space
+    display();
+ }
+}
+
+
+void display()
+{
+    //for loop is not normally applicable because of circular nature of queue
+    if(cursize==0)
+    {
+      cout<<"the queue is empty"<<endl;
+      //return;
+    }
+    else{
+    int i=front;
+    do{
+       cout<<arr[i]<<" ";
+       i=(i+1)%max;
+
+    }while(i!=(rear+1)%max);
+    cout<<endl;
+}
+}
+};
+int main()
+{
+circularq Q;
+int x;
+int choice;
+
+   do{
+   
+     cout<<"==Here are yur options=="<<endl;
+     cout<<"1.enqueue"<<endl;
+     cout<<"2.dequeue"<<endl;
+     cout<<"3.display"<<endl;
+    cout<<"4.exit"<<endl;
+    cout<<"Enter here->"<<endl;
+         cin>>choice;
+     switch(choice)
+     {
+         case 1:
+        Q.enqueue();
+        break;
+
+        case 2:
+         Q.dequeue();
+         break;
+
+        case 3:
+         Q.display();
+        break;
+
+        case 4:
+        cout<<"existing....."<<endl;
+        break;
+         default:
+        cout<<"invalid option"<<endl;
+        break;
+
+    } } while(choice!=4);
+     getch();
+    return 0;
+
+}
+
