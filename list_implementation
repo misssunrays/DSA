@@ -1,0 +1,159 @@
+//list implementation
+#include<iostream>
+#include<conio.h>
+using namespace std;
+#define max 5
+class list{
+private:
+      int index;
+      int arr[max];
+      int element;
+public:
+      list()
+      {
+       index=-1;
+      }      
+void push()
+{
+    
+    cout<<"enter the elements."<<endl;
+    for (int i=0;i<max;i++)
+    {
+        cout<<i<<" th"<<" element:";
+        cin>>arr[i];
+        index++;
+    }
+    cout<<"DONE"<<endl;
+    // if(index==-1)
+    // {
+    //     index++;
+    //     cout<<"index is:"<<index<<endl;
+    // }
+}
+
+void traversal()
+{
+    if(index==-1)
+    {
+        cout<<"the list is empty."<<endl;
+    }
+    else
+    {
+      for(int i=0;i<max;i++)
+      {
+        int data;
+        data=arr[i];
+        cout<<data<<" ";
+
+      }  
+      cout<<endl;
+    }
+
+
+}
+void search()
+{
+    int search_data;
+    int i;
+    if(index==-1)
+    {
+        cout<<"the list is empty."<<endl;
+    }
+    else{
+        cout<<"enter the element you want to search:";
+        cin>>search_data; 
+        for(i=0;i<=max;i++)
+    {
+        if(arr[i]==search_data)
+        {
+            cout<<"element found at "<<i<<"th index."<<endl;
+            break;
+        }
+    }
+    }
+}
+void insert_at_beg()//in oth position
+{
+    //int element;
+  if(index==-1)
+    {
+        cout<<"the list is empty."<<endl;
+    }
+    else{
+        cout<<"<<INSERT_AT_BEGGINING>>"<<endl;
+    cout<<"enter the element you want to enter:"<<endl;
+    cin>>element;
+    for(int i=index;i>0;i--)
+    {
+      arr[i]=arr[i-1];
+    }
+    arr[0]=element;
+}
+    traversal();
+
+}
+   
+void insert_in_between()
+{
+  int p;
+  if(index==-1)
+    {
+        cout<<"the list is empty."<<endl;
+    }
+    else{
+        cout<<"<<INSERT_IN_BETWEEN>>"<<endl;
+    cout<<"enter the position:"<<endl;
+    cin>>p;
+
+    cout<<"enter the element you want to enter:"<<endl;
+    cin>>element;
+    for(int i=index;i>p;i--)
+    {
+      arr[i]=arr[i-1];
+    }
+    arr[p]=element;
+}
+    
+    traversal();
+}
+
+void insert_at_the_end()
+{
+   if(index==-1)
+    {
+        cout<<"the list is empty."<<endl;
+    }
+    else{
+        cout<<"<<INSERT_AT_END>>"<<endl;
+    cout<<"enter the element you want:"<<endl;
+    cin>>element;
+    for(int i=0;i<max;i++)
+    {
+      arr[i]=arr[i+1];
+    }
+    arr[index]=element;
+}
+traversal();
+}
+
+
+
+
+
+};
+int main()
+{
+    list l;
+    l.push();
+    l.traversal();
+    //l.search();
+    //l.insert_at_beg();
+    l.insert_in_between();
+   l. insert_at_the_end();
+
+
+
+
+    getch();
+    return 0;
+}
