@@ -1,4 +1,7 @@
 //list implementation
+//the list is made full and we perform the operation.
+//we can modify the push function if we want
+
 #include<iostream>
 #include<conio.h>
 using namespace std;
@@ -8,6 +11,8 @@ private:
       int index;
       int arr[max];
       int element;
+      int i;
+      int x;
 public:
       list()
       {
@@ -15,7 +20,12 @@ public:
       }      
 void push()
 {
-    
+    if(index==max-1)
+    {
+        cout<<"the list is full"<<endl;
+    }
+    else
+    {
     cout<<"enter the elements."<<endl;
     for (int i=0;i<max;i++)
     {
@@ -24,11 +34,8 @@ void push()
         index++;
     }
     cout<<"DONE"<<endl;
-    // if(index==-1)
-    // {
-    //     index++;
-    //     cout<<"index is:"<<index<<endl;
-    // }
+}
+    
 }
 
 void traversal()
@@ -39,7 +46,7 @@ void traversal()
     }
     else
     {
-      for(int i=0;i<max;i++)
+      for(int i=0;i<=index;i++)
       {
         int data;
         data=arr[i];
@@ -135,22 +142,143 @@ void insert_at_the_end()
 }
 traversal();
 }
+void delet_at_last()
+{
+  if(index==-1)
+    {
+        cout<<"the list is empty."<<endl;
+    }
+    index=index-1;
+    //max=max-1;we cannot change macro in runtime.
+    traversal();
+}
+void delet_in_beg()
+{
+   if( isempty())
+   {
+     cout<<"the list is empty."<<endl;
+   }
+    else{
+         for(i=0;i<=index;i++)
+         {
+           arr[i]=arr[i+1];
+         }
+         index--;
+         traversal();
+    }
+}
 
-
-
+void delet_in_between()
+{
+    int p;
+    if(isempty())
+    {
+         cout<<"the list is empty."<<endl;
+    }
+    else
+    {
+      cout<<"enter the deletion position.";
+      cin>>p;
+      for(i=p;i<=index;i++)
+      {
+        arr[i]=arr[i+1];
+      }
+      index--;
+    }
+    traversal();
+}
+bool isempty()
+{
+     if(index==-1)
+    {
+    
+        return true;
+    }
+    else
+        return false;
+}
 
 
 };
 int main()
 {
     list l;
-    l.push();
-    l.traversal();
+    int choice;
+    // l.push();
+    // l.traversal();
     //l.search();
     //l.insert_at_beg();
-    l.insert_in_between();
-   l. insert_at_the_end();
+   // l.insert_in_between();
+   //l. insert_at_the_end();
+   //l.delet_at_last();
+   //l.delet_in_beg();
+   //l.delet_in_between();
 
+ do{
+   
+     cout<<"==Here are your options=="<<endl;
+     cout<<"1.enlist"<<endl;
+     cout<<"2.search"<<endl;
+     cout<<"3.insert at begenning"<<endl;
+     cout<<"4.insert in between"<<endl;
+     cout<<"5.insert at the end"<<endl;
+     cout<<"6.delete at the beggining"<<endl;
+     cout<<"7.delet in between"<<endl;
+     cout<<"8.delet at the end"<<endl;
+     cout<<"9.display"<<endl;
+    cout<<"0.exit"<<endl;
+    cout<<"Enter here->"<<endl;
+         cin>>choice;
+     switch(choice)
+     {
+         case 1:
+       l.push();
+        break;
+
+        case 2:
+        l.search();
+         break;
+
+        case 3:
+        l.insert_at_beg();
+         break;
+
+         case 4:
+        l.insert_in_between();
+         break;
+
+         case 5:
+       l. insert_at_the_end();
+         break;
+
+        case 6:
+        l.delet_in_beg();
+         break;
+
+         case 7:
+        l.delet_in_between();
+         break;
+       
+         case 8:
+       l.delet_at_last();
+         break;
+       
+         case 9:
+        l.traversal();
+         break;
+
+        case 10:
+         l.traversal();
+        break;
+
+        case 0:
+        cout<<"existing....."<<endl;
+        break;
+         default:
+        cout<<"invalid option"<<endl;
+        break;
+
+    } } while(choice!=4);
 
 
 
