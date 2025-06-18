@@ -1,0 +1,116 @@
+//linked list
+//this is a very useful video
+//https://youtu.be/CE150x4w0bo?si=pneYVpScrD0M_co7
+#include<iostream>
+#include<conio.h>
+using namespace std;
+class node
+{
+
+public:
+int data;
+node *next;
+node(int val):data(val)
+{
+  next=NULL;
+}
+
+};
+
+class list
+{
+  private:
+    node *head;
+    node *tail;
+
+    public:
+      list()
+      {
+       head=NULL;
+       tail=NULL; 
+      }
+
+    void enlist(int value)
+    {
+      node *temp=new node(value);
+      if(!head)//if head is null
+      {
+        head=tail=temp;//then create first node
+      }
+      else
+      {
+        tail->next=temp;//create new node and 
+        tail=temp;//move tail pointer to next node
+      }
+    }
+
+    void delist()
+    {
+      if(!head)
+      {
+        cout<<"empty list"<<endl;
+      }
+      else
+      {
+        node *temp;
+        temp=head;
+        head=head->next;
+        delete temp;
+        if(!head)//if the list contain only one node we have to 
+        { 
+          tail=NULL;
+        
+        } //delete the tail as well. 
+        //for 1 node head and tail are at same place
+
+      }
+    }
+  void display()
+  {
+    if(is_empty())
+    {
+      cout<<"empty list"<<endl;
+      return;
+    }
+   node *temp=head;
+   while(temp)
+   {
+    cout<<temp->data<< " ";
+    temp=temp->next;
+   }
+   cout<<endl;
+  }
+
+  bool is_empty()
+  {
+    if(head==NULL)
+    {
+      return true;
+    }
+    else
+       return false;
+  }
+};
+
+int main()
+{
+  list l;
+  int n,num;
+  cout<<"enter the number of nodes:";
+  cin>>n;
+  //reducing the time complexity for enlist function.
+  for(int i=0;i<n;i++)
+  {
+   cout<<"enter value:";
+   cin>>num;
+   l.enlist(num);
+  }
+   l.display();
+  l.delist();
+  l.display();
+
+
+  getch();
+  return 0;
+}
+
