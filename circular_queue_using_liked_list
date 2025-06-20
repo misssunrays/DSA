@@ -1,0 +1,107 @@
+//circular queue using linked list
+#include <iostream>
+using namespace std;
+class node
+{
+  public:
+   node *next;
+   int data;
+  node(int val): data(val){}
+
+};
+class circularlist
+{
+private:
+ node *front;
+ node *back;
+ int capacity;
+ int index;
+
+ public:
+     circularlist(int max ):front(NULL),back(NULL),index(0),capacity(max){}
+    
+   void enqueue(int x)
+  {
+    if(index==capacity)
+    {
+      cout<<"full"<<endl;
+      return;
+    }
+    node *temp= new node(x);
+    if(front==NULL)
+    {
+       front=back=temp;
+      back->next=front;
+    }
+     else
+    {
+     back->next=temp;
+     back=temp;
+     back->next=front;
+
+    }
+    index++;
+   }  
+void dequeue()
+{
+  
+  if(front==NULL)
+  {
+    cout<<"empty"<<endl;
+    return;
+  }
+  if(front==back)
+  {
+   delete front;
+   front=back=NULL;
+   return;
+  }
+  node *temp=front;
+front=temp->next;
+back->next=front;
+delete temp;
+index--;
+}
+
+
+
+void display()
+{
+  
+node *temp=front;
+if(front==NULL)
+{
+ cout<<"empty."<<endl;
+ return;
+}
+
+ do{ 
+   cout<<temp->data<<" ";
+   temp=temp->next;
+
+    }while(temp!=front);
+}
+
+
+};
+int main()
+{
+  
+  int num,nodes;
+ cout<<"enter the number of nodes:";
+ cin>>nodes;
+ circularlist cl(nodes);
+
+ for(int i=0;i<nodes;i++)
+ {
+  cout<<"enter the element:";
+  cin>>num;
+  cl.enqueue(num);
+ }
+ cl.dequeue();
+ cl.enqueue(10);
+ cl.enqueue(30);
+ cl.enqueue(40);
+  cl.display();
+  return 0;
+}
